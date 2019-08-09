@@ -1,29 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
+<script>
+//rem方案
+const MAX_FONT_SIZE = 50;
+window.document.addEventListener('DOMContentLoaded',()=>{
+  const HTML = document.querySelector('html');
+  let font_size = window.innerWidth / 10;
+  font_size = font_size < MAX_FONT_SIZE ? font_size : MAX_FONT_SIZE;
+  HTML.style.fontSize = font_size;
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+})
+export default {
+
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+</script>
+
+
+
