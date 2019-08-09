@@ -1,52 +1,56 @@
 const path = require('path')
-const resolve = dir => path.join(__dirname, dir)
-const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV)
 
 module.exports = {
-  baseUrl: '/', // 默认'/'，部署应用包时的基本 URL
-  outputDir: 'dist',
-  lintOnSave: true,
-  runtimeCompiler: true, //运行时编译
   devServer: {
     host: '192.168.3.76',
-    port: 8080,
+    port: 8000,
     https: false,
-    hotOnly: false,
-    // 查阅 https://github.com/vuejs/vue-doc-zh-cn/vue-cli/cli-service.md#配置代理
-    proxy: null // string | Object
+    hotOnly: false
+    // proxy: {
+    // }
   },
-
-  chainWebpack: config => {
-    // 添加别名
-    config.resolve.alias
-      .set('vue$', 'vue/dist/vue.esm.js')
-      .set('@', resolve('src'))
-      .set('@assets', resolve('src/assets'))
-      .set('@styles', resolve('src/assets/styles'))
-      .set('@components', resolve('src/components'))
-      .set('@plugins', resolve('src/plugins'))
-      .set('@views', resolve('src/views'))
-      .set('@router', resolve('src/router'))
-      .set('@store', resolve('src/store'))
-      .set('@static', resolve('src/static'))
-  },
-  chainWebpack: config => {
-    //添加全局sass变量和混入函数
-    config => {
-      const oneOfsMap = config.module.rule('scss').oneOfs.store
-      oneOfsMap.forEach(item => {
-        item
-          .use('sass-resources-loader')
-          .loader('sass-resources-loader')
-          .options({
-            // Or array of paths
-            resources: [
-              './src/assets/styles/var.scss',
-              './src/assets/styles/mixins.scss'
-            ]
-          })
-          .end()
-      })
+  configureWebpack: config => {
+    //添加别名
+    if (process.env.NODE_ENV === 'production') {
+      // 为生产环境修改配置...
+    } else {
+      // 为开发环境修改配置...
+      // 只修改开发环境配置，打包会出现找不到定义的别名的错误
+      // return {
+      //     resolve: {
+      //         alias: {
+      //             '@c': path.resolve(__dirname, './src/components/'),
+      //             '@css': path.resolve(__dirname, './src/assets/css'),
+      //             '@img': path.resolve(__dirname, './src/assets/img'),
+      //             '@js': path.resolve(__dirname, './src/assets/js'),
+      //         }
+      //     }
+      // }
     }
+
+    return {
+      resolve: {
+        alias: {
+          '@c': path.resolve(__dirname, './src/components/'),
+          '@css': path.resolve(__dirname, './src/assets/styles'),
+          '@img': path.resolve(__dirname, './src/assets/img'),
+          '@js': path.resolve(__dirname, './src/assets/js')
+        }
+      }
+    }
+  },
+  chainWebpack: config => {
+    //添加全局sass变量
+    const oneOfsMap = config.module.rule('scss').oneOfs.store
+    oneOfsMap.forEach(item => {
+      item
+        .use('sass-resources-loader')
+        .loader('sass-resources-loader')
+        .options({
+          // Provide path to the file with resources
+          resources: './src/assets/styles/resources.scss'
+        })
+        .end()
+    })
   }
 }
