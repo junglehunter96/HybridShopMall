@@ -6,7 +6,7 @@
 <script>
 //rem方案
 const MAX_FONT_SIZE = 50;
-window.document.addEventListener('DOMContentLoaded',()=>{
+window.document.addEventListener('DOMContentLoaded', () => {
   const HTML = document.querySelector('html');
   let font_size = window.innerWidth / 10;
   font_size = font_size < MAX_FONT_SIZE ? font_size : MAX_FONT_SIZE;
@@ -17,6 +17,13 @@ export default {
 
 }
 </script>
+<style lang="css" scoped>
+#app {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
 
 
 

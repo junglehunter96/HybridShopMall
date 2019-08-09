@@ -1,8 +1,6 @@
 <template>
 
-  <div
-    class="tool-bar"
-  >
+  <div class="tool-bar">
     <!-- tab 按钮 , 需要有一个数据源，通过这个数据源来去驱动视图-->
     <div
       class="tool-bar-item"
@@ -45,7 +43,6 @@
 export default {
   data: function () {
     return {
-      // tab 按钮数据源，vue 、react、angular MVVM 框架，数据驱动视图
       toolBarData: [
         {
           // 默认状态下的图片
@@ -58,23 +55,15 @@ export default {
           componentName: 'home'
         },
         {
-          // 默认状态下的图片
           nIcon: require('@img/shopping-n.svg'),
-          // 高亮状态下的图片
           hIcon: require('@img/shopping-h.svg'),
-          // 名称
           name: '购物车',
-          // 组件名称
           componentName: 'shopping'
         },
         {
-          // 默认状态下的图片
           nIcon: require('@img/my-n.svg'),
-          // 高亮状态下的图片
           hIcon: require('@img/my-h.svg'),
-          // 名称
           name: '我的',
-          // 组件名称
           componentName: 'my'
         }
       ],
