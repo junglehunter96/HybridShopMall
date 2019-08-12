@@ -14,7 +14,6 @@ export default {
 
 <style lang="scss" scoped>
 .activity {
-  max-height: px2rem(160);
-  position: relative;
+  position: relative
 }
 </style>
