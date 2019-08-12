@@ -3,8 +3,7 @@ import axios from 'axios'
 
 // 创建mock数据
 
-axios.defaults.baseURL =
-  'https://www.easy-mock.com/mock/5cd9810981f5e5576a8643ff/api'
+axios.defaults.baseURL = process.env.VUE_APP_RES_URL
 
 /**
  * 设置拦截器，interceptors 的 响应处理，
