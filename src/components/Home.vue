@@ -2,10 +2,12 @@
   <div class="home">
     <div class="home-content-wrapper">
       <!-- swiper -->
-      <my-swiper
+      <div ref="swiperWrapper" class="swiper-content">
+        <my-swiper
         :swiperImgs="swiperImgs"
         :height="swiperHeight"
       ></my-swiper>
+      </div>
       <!-- 导航图标 -->
       <mode-options></mode-options>
       <!-- 限时秒杀 -->
@@ -58,10 +60,14 @@ export default {
         this.activityDatas = activityDatas.list;
         this.secondsDatas = secondsDatas.list;
       }))
+    },
+    initSwiper () {
+      this.$refs.swiperWrapper.style.height=this.swiperHeight
     }
   },
   mounted () {
     this.initData();
+    this.initSwiper();
   }
 }
 </script>
@@ -77,7 +83,9 @@ export default {
   }
   &-content-wrapper {
     height: 100%;
-
+    .swiper-content {
+      background-color: $bgColor;
+    }
     // 520 活动
     .activity-520 {
       background-color: #f5f5f5;

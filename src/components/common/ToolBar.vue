@@ -111,7 +111,7 @@ export default {
     }
 
     &-name {
-      font-size: $infoSize;
+      font-size: $minInfoSize;
       margin-top: px2rem(4);
 
       &-h {
