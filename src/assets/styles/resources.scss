@@ -3,6 +3,7 @@ $ratio: 375 / 10;
   @return $px / $ratio+rem
 }
 
+// 色调
 // 主色
 $mainColor: #d81e06;
 // 分割线颜色
@@ -23,7 +24,11 @@ $checkSize: px2rem(18);
 $listGoodsImgSize: px2rem(100);
 // statusBar 的高度
 $statusBarHeight: px2rem(22);
+$textHintColor: #999999;
 
+
+
+// mixins
 @mixin center {
   display: flex;
   justify-content: center;
