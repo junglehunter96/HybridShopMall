@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <keep-alive>
-      <!-- 动态组件 -->
       <component :is="currentComponent"></component>
     </keep-alive>
     <div class="tool_bar">
@@ -14,12 +13,11 @@
 </template>
 
 <script>
-import toolBar from '@c/currency/ToolBar.vue';
+import toolBar from '@c/common/ToolBar.vue';
 export default {
   name: 'shopCenter',
   components: {
     toolBar,
-    // 异步组件引入方式, 异步组件：只有在需要去展示这个组件的时候，才会把组件去进行渲染。
     'home': () => import('@c/Home'),
     'shopping': () => import('@c/Shopping'),
     'my': () => import('@c/My'),
