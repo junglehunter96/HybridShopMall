@@ -1,5 +1,28 @@
 <template>
-  <div class="home">
+  <div
+    class="home"
+    @scroll="onScrollChange"
+    ref="home"
+  >
+    <!-- 头部导航栏 -->
+    <navigation-bar
+      :isDefault="false"
+      :navBarStyle="navBarStyle"
+    >
+      <template v-slot:nav-left>
+        <img :src="navBarCurrentSlot.leftIcon">
+      </template>
+      <template v-slot:nav-center>
+        <search
+          :bgColor="navBarCurrentSlot.search.bgColor"
+          :hintColor="navBarCurrentSlot.search.hintColor"
+          :icon="navBarCurrentSlot.search.icon"
+        ></search>
+      </template>
+      <template v-slot:nav-right>
+        <img :src="navBarCurrentSlot.rightIcon">
+      </template>
+    </navigation-bar>
     <div class="home-content-wrapper">
       <!-- swiper -->
       <div
@@ -45,12 +68,35 @@
 <script>
 import mySwiper from '@c/common/MySwiper'
 import activity from '@c/currency/Activity'
+import navigationBar from '@c/currency/NavigationBar'
 import modeOptions from '@c/currency/ModeOptions'
 import seconds from '@c/currency/Seconds'
 import goods from '@c/goods/Goods.vue'
+import search from '@c/currency/Search.vue'
+
 export default {
   data () {
     return {
+      navBarSlotData: {
+        normal: {
+          leftIcon: require('@img/more-white.svg'),
+          search: {
+            bgColor: '#ffffff',
+            hintColor: '#999999',
+            icon: require('@img/search.svg')
+          },
+          rightIcon: require('@img/message-white.svg')
+        },
+        highlight: {
+          leftIcon: require('@img/more.svg'),
+          search: {
+            bgColor: '#d7d7d7',
+            hintColor: '#ffffff',
+            icon: require('@img/search-white.svg')
+          },
+          rightIcon: require('@img/message.svg')
+        }
+      },
       swiperHeight: '184px',
       swiperDatas: [],
       activityDatas: [],
@@ -70,11 +116,23 @@ export default {
       {
         id: '4',
         icon: require('@img/activity/activity-04.webp')
-      }]
+      }],
+      navBarCurrentSlot: {},
+      /**
+       * 此处仅涉及图片展示，父子组件交互会在购物车的时候讲解
+       */
+      // 顶部样式
+      navBarStyle: {
+        backgroundColor: '',
+        position: 'fixed',
+      },
+      // 滚动值
+      scrollTopValue: -1,
+      ANCHOR_SCROLL_TOP: 160
     }
   },
   components: {
-    mySwiper, activity, modeOptions, seconds, goods
+    mySwiper, activity, modeOptions, seconds, goods, navigationBar, search
   },
   computed: {
     swiperImgs () {
@@ -94,11 +152,25 @@ export default {
       }))
     },
     initSwiper () {
-      this.$refs.swiperWrapper.style.height = this.swiperHeight
+      this.$refs.swiperWrapper.style.height = this.swiperHeight;
+    },
+    onScrollChange (event) {
+      this.scrollTopValue = event.target.scrollTop;
+      let opacity = this.scrollTopValue / this.ANCHOR_SCROLL_TOP;
+      opacity = opacity > 1 ? 1 : opacity;
+      if (opacity === 1) {
+        this.navBarCurrentSlot = this.navBarSlotData.highlight;
+      } else {
+        this.navBarCurrentSlot = this.navBarSlotData.normal;
+      }
+      this.navBarStyle.backgroundColor = 'rgba(255, 255, 255, ' + opacity + ')';
     }
   },
-  mounted () {
+  created () {
+    this.navBarCurrentSlot = this.navBarSlotData.normal;
     this.initData();
+  },
+  mounted() {
     this.initSwiper();
   }
 }

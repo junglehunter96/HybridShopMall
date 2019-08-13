@@ -25,8 +25,11 @@ $listGoodsImgSize: px2rem(100);
 // statusBar 的高度
 $statusBarHeight: px2rem(22);
 $textHintColor: #999999;
-
-
+$navBarHeight: px2rem(44);
+// 手机中 stateBar 高度
+$stateBarHeight: px2rem(12);
+// IphoneX 底部操作位置高度
+$iphoneXBottomHeight: px2rem(34);
 
 // mixins
 @mixin center {
