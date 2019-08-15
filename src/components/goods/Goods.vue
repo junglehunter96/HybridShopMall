@@ -240,7 +240,7 @@ export default {
       });
       // 在不需要 goods 自滑动的时候，再去计算 goodsView 的高度
       if (!this.isScroll) {
-        this.goodsViewHeight = (leftHeightTotal > rightHeightTotal+ 48 ? leftHeightTotal : rightHeightTotal+ 48 ) + 'px';
+        this.goodsViewHeight = (leftHeightTotal > rightHeightTotal + 48 ? leftHeightTotal : rightHeightTotal + 48) + 'px';
       }
 
     },
@@ -252,7 +252,7 @@ export default {
         alert('该商品暂无库存');
         return;
       }
-      this.$store.commit('setSelectGoods', item);
+      // this.$store.commit('setSelectGoods', item);
       this.$router.push({
         name: 'goodsDetails',
         params: {
@@ -289,7 +289,7 @@ export default {
 <style lang="scss" scoped>
 .goods {
   background-color: $bgColor;
-  margin-top:px2rem(5);
+  margin-top: px2rem(5);
   &-scroll {
     overflow: hidden;
     overflow-y: auto;
