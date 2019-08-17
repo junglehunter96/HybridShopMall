@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <transition :name="transitonName">
+    <transition :name="transitionName">
       <keep-alive :include="keepAliveNames">
         <router-view />
       </keep-alive>

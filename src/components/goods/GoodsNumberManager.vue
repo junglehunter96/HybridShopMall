@@ -39,10 +39,10 @@ export default {
   },
   methods: {
     onLessClick: function () {
-      console.log('onLessClick');
-      if (this.number === 1) {
-        return;
-      }
+      // console.log('onLessClick');
+      // if (this.number === 1) {
+      //   return;
+      // }
       this.number -= 1;
     },
     onAddClick: function () {
