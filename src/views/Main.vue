@@ -1,13 +1,13 @@
 <template>
   <div class="main">
-    <keep-alive>
-      <component :is="currentComponent"></component>
-    </keep-alive>
+      <keep-alive>
+        <component :is="currentComponent"></component>
+      </keep-alive>
     <div class="tool_bar">
       <tool-bar
-      ref="toolBar"
-      @onChangeFragment="onChangeFragment"
-    ></tool-bar>
+        ref="toolBar"
+        @onChangeFragment="onChangeFragment"
+      ></tool-bar>
     </div>
   </div>
 </template>
@@ -58,12 +58,12 @@ export default {
   height: 100%;
   display: flex;
   flex-direction: column;
-}
-.tool_bar {
-  width:100%;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index:99;
+  .tool_bar {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+  }
 }
 </style>

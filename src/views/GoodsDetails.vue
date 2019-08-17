@@ -83,7 +83,7 @@
       </parallax>
     </div>
 
-    <div
+  <div
       class="goods-detail-buy"
       :class="{'iphonex-bottom' : isIphoneX}"
     >
@@ -125,13 +125,14 @@ export default {
       scrollTopValue: -1,
       isIphoneX: window.isIphoneX,
       supportDatas: [
-        '可配送海外', '京东发货&售后', '京准达', '211限时达', '可自提', '不可使用优惠卷',
+        '可配送海外', '苏宁发货&售后', '京准达', '211限时达', '可自提', '不可使用优惠卷',
       ],
       parallaxScroll: 0,
     }
   },
   created: function () {
-    this.goodsData = this.$store.state.selectGoods;
+    this.goodsData = this.$store.state.goods.selectGoods;
+    console.log(this.goodsData)
   },
   methods: {
     onBackClick: function () {
@@ -151,13 +152,14 @@ export default {
     onAddGoodsClick: function () {
       this.$store.commit('addShoppiongData', this.goodsData);
       alert('添加成功');
-      this.$router.push({
-        name: 'imooc',
-        params: {
-          routerType: 'push',
-          componentIndex: 1
-        },
-      })
+      this.$router.go(-1);
+      // this.$router.push({
+      //   name: 'home',
+      //   params: {
+      //     routerType: 'push',
+      //     componentIndex: 1
+      //   },
+      // })
     },
     /**
      * 立即购买点击事件
@@ -219,8 +221,7 @@ export default {
 
   &-content {
     overflow: hidden;
-    height: 100%;
-
+    flex:1;
     &-desc {
       width: 100%;
       background-color: $bgColor;
