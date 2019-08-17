@@ -252,12 +252,12 @@ export default {
         alert('该商品暂无库存');
         return;
       }
-      // this.$store.commit('setSelectGoods', item);
+      this.$store.commit('setSelectGoods', item);
       this.$router.push({
         name: 'goodsDetails',
         params: {
           routerType: 'push',
-          // goods: item
+          goods: item
         },
       })
     },
