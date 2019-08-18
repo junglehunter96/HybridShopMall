@@ -5,4 +5,4 @@ document.addEventListener('DOMContentLoaded', () => {
     let fontSize = window.innerWidth / 10;
     fontSize  = fontSize > MAX_FONT_SIZE ? MAX_FONT_SIZE : fontSize;
     html.style.fontSize = fontSize + 'px';
-});
+}); 

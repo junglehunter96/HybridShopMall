@@ -132,7 +132,6 @@ export default {
   },
   created: function () {
     this.goodsData = this.$store.state.goods.selectGoods;
-    console.log(this.goodsData)
   },
   methods: {
     onBackClick: function () {

@@ -18,9 +18,9 @@ export default {
       ]
     }
   },
-  // created: function () {
-  //   window.nativeFunctionUserLogin = this.nativeFunctionUserLogin;
-  // },
+  created: function () {
+    window.nativeFunctionUserLogin = this.nativeFunctionUserLogin;
+  },
 
   // vue监听路由对象$route的方法
   watch: {
